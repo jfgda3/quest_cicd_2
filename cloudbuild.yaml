@@ -1,11 +1,11 @@
 steps:
   # Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'LOCATION-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY_REPO}/myimage:TAG', '.']
+    args: ['build', '-t', 'LOCATION-docker.pkg.dev/${PROJECT_ID}/${REPO_NAME}/myimage:${TAG_NAME}', '.']
 
   # Push the image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'LOCATION-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY_REPO}/myimage:TAG']
+    args: ['push', 'LOCATION-docker.pkg.dev/${PROJECT_ID}/${REPO_NAME}/myimage:${TAG_NAME}']
 
   # Set up kubectl
   - name: 'gcr.io/cloud-builders/kubectl'
@@ -14,7 +14,7 @@ steps:
       - '-c'
       - |
         gcloud container clusters get-credentials CLUSTER_NAME --zone CLUSTER_ZONE --project ${PROJECT_ID}
-        kubectl set image deployment/DEPLOYMENT_NAME CONTAINER_NAME=LOCATION-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY_REPO}/myimage:TAG
+        kubectl set image deployment/DEPLOYMENT_NAME CONTAINER_NAME=LOCATION-docker.pkg.dev/${PROJECT_ID}/${REPO_NAME}/myimage:${TAG_NAME}
 
 images:
-  - 'LOCATION-docker.pkg.dev/${PROJECT_ID}/${_ARTIFACT_REGISTRY_REPO}/myimage:TAG'
+  - 'LOCATION-docker.pkg.dev/${PROJECT_ID}/${REPO_NAME}/myimage:${TAG_NAME}'
