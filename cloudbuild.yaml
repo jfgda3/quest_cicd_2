@@ -1,11 +1,11 @@
 steps:
   # Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', '${LOCATION}-docker.pkg.dev/${PROJECT_ID}/jfgda3-quest_cicd_2/myimage:${SHORT_SHA}', '.']
+    args: ['build', '-t', '${LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE}', '.']
 
   # Push the image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', '${LOCATION}-docker.pkg.dev/${PROJECT_ID}/jfgda3-quest_cicd_2/myimage:${SHORT_SHA}']
+    args: ['push', '${LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE}']
 
   # Set up kubectl
   - name: 'gcr.io/cloud-builders/kubectl'
@@ -14,7 +14,7 @@ steps:
       - '-c'
       - |
         gcloud container clusters get-credentials CLUSTER_NAME --zone CLUSTER_ZONE --project ${PROJECT_ID}
-        kubectl set image deployment/DEPLOYMENT_NAME CONTAINER_NAME=${LOCATION}-docker.pkg.dev/${PROJECT_ID}/jfgda3-quest_cicd_2/myimage:${SHORT_SHA}
+        kubectl set image deployment/DEPLOYMENT_NAME CONTAINER_NAME=${LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE}
 
 images:
-  - '${LOCATION}-docker.pkg.dev/${PROJECT_ID}/jfgda3-quest_cicd_2/myimage:${SHORT_SHA}'
+  - '${LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE}'
