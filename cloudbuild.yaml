@@ -3,7 +3,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', '${LOCATION}-docker.pkg.dev/${PROJECT_ID}/artrepo1/my-image:${SHORT_SHA}', '.']
 
-  # Push the image to Artifact Registry
+  # Push the image to Artifact Registry  
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', '${LOCATION}-docker.pkg.dev/${PROJECT_ID}/artrepo1/my-image:${SHORT_SHA}']
 
