@@ -1,5 +1,8 @@
 import time
-print('Hello from Python - Version 2.1')
+print('Hello from Python - Version 2.2')
 
-time.sleep(30)
+while true:
+    time.sleep(1)
+    print('Still alive')
+
 print('End of the script')
