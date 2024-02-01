@@ -8,7 +8,7 @@ steps:
     args: ['push', '${LOCATION}-docker.pkg.dev/${PROJECT_ID}/artrepo1/my-image:${SHORT_SHA}']
 
   # Set up kubectl
-  - name: 'gcr.io/cloud-builders/kubectl' 
+  - name: 'gcr.io/cloud-builders/kubectl'  
     entrypoint: 'bash'
     args:
       - '-c'
