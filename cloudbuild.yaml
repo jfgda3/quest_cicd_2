@@ -14,7 +14,7 @@ steps:
       - '-c'
       - |
         gcloud container clusters get-credentials autopilot-cluster-1 --region europe-west1 --project ${PROJECT_ID}
-        kubectl set image deployment/app-1 my-image=${LOCATION}-docker.pkg.dev/${PROJECT_ID}/artrepo1/my-image:${SHORT_SHA}
+        kubectl set image deployment/app-1 my-image:${SHORT_SHA}=${LOCATION}-docker.pkg.dev/${PROJECT_ID}/artrepo1/my-image:${SHORT_SHA}
 
 images:
   - '${LOCATION}-docker.pkg.dev/${PROJECT_ID}/artrepo1/my-image:${SHORT_SHA}'
