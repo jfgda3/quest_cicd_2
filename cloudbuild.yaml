@@ -1,4 +1,6 @@
 steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/${PROJECT_ID}/app-1', '.']
   # Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', '${LOCATION}-docker.pkg.dev/${PROJECT_ID}/artrepo1/my-image:${SHORT_SHA}', '.']
