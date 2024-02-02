@@ -1,7 +1,7 @@
 import time
 print('Hello from Python - Version 2.2')
 
-while true:
+while True:
     time.sleep(1)
     print('Still alive')
 
